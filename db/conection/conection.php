@@ -75,7 +75,7 @@
 
         if(!$resultado)
         {
-            echo "Error al identificar Alumno" . mysqli_error($conexion);
+            echo "Error al identificar Alumno con boleta" . mysqli_error($conexion);
             return -1;
         }
         else
@@ -153,6 +153,29 @@
     function recuperarAlumno($conexion, $boletaVerificar)
     {
         $query = "SELECT * FROM Alumno WHERE boleta = '$boletaVerificar'";
+        $resultado = mysqli_query($conexion,$query);
+
+        if($resultado)
+        {
+            $fila = mysqli_fetch_assoc($resultado);
+
+            if($fila == NULL)
+            {
+                return null;
+            }
+            return $fila;
+        }
+        else
+        {
+            echo "Error al recuperar Alumno de la BD: " . mysqli_error($conexion);
+            return null;
+        }
+    }
+
+    #Función que recupera un alumno desde la BD dado su usuario
+    function recuperarAlumnoConUsuario($conexion, $usuarioVerificar)
+    {
+        $query = "SELECT * FROM Alumno WHERE usuario = '$usuarioVerificar'";
         $resultado = mysqli_query($conexion,$query);
 
         if($resultado)

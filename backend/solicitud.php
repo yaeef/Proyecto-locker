@@ -6,17 +6,17 @@
         if($_POST["tipoSolicitud"] == 2) //Si es registro por primera vez
         {
             #VERIFICACIÓN DE EXISTENCIA DE DATOS
-            if(!isset($_POST['nombre'])) {header("location:../frontend/solicitud.php?notif=-3");}
-            if(!isset($_POST['paterno'])) {header("location:../frontend/solicitud.php?notif=-3");}
-            if(!isset($_POST['materno'])) {header("location:../frontend/solicitud.php?notif=-3");}
-            if(!isset($_POST['telefono'])) {header("location:../frontend/solicitud.php?notif=-3");}
-            if(!isset($_POST['estatura'])) {header("location:../frontend/solicitud.php?notif=-3");}
-            if(!isset($_POST['correo'])) {header("location:../frontend/solicitud.php?notif=-3");}
-            if(!isset($_POST['boleta'])) {header("location:../frontend/solicitud.php?notif=-3");}
-            if(!isset($_POST['credencial'])) {header("location:../frontend/solicitud.php?notif=-3");}
-            if(!isset($_POST['horario'])) {header("location:../frontend/solicitud.php?notif=-3");}
-            if(!isset($_POST['usuario'])) {header("location:../frontend/solicitud.php?notif=-3");}
-            if(!isset($_POST['password'])) {header("location:../frontend/solicitud.php?notif=-3");}
+            if(!isset($_POST['nombre'])) {header("location:../frontend/solicitud.php?notif=-3"); exit();}
+            if(!isset($_POST['paterno'])) {header("location:../frontend/solicitud.php?notif=-3"); exit();}
+            if(!isset($_POST['materno'])) {header("location:../frontend/solicitud.php?notif=-3"); exit();}
+            if(!isset($_POST['telefono'])) {header("location:../frontend/solicitud.php?notif=-3"); exit();}
+            if(!isset($_POST['estatura'])) {header("location:../frontend/solicitud.php?notif=-3"); exit();}
+            if(!isset($_POST['correo'])) {header("location:../frontend/solicitud.php?notif=-3"); exit();}
+            if(!isset($_POST['boleta'])) {header("location:../frontend/solicitud.php?notif=-3"); exit();}
+            if(!isset($_POST['credencial'])) {header("location:../frontend/solicitud.php?notif=-3"); exit();}
+            if(!isset($_POST['horario'])) {header("location:../frontend/solicitud.php?notif=-3"); exit();}
+            if(!isset($_POST['usuario'])) {header("location:../frontend/solicitud.php?notif=-3"); exit();}
+            if(!isset($_POST['password'])) {header("location:../frontend/solicitud.php?notif=-3"); exit();}
 
             $conexion = conectarBD();
             $existeBoleta = evaluarExistencia($conexion,$_POST['boleta'],'boleta');
@@ -28,6 +28,7 @@
             {
                 desconectarBD($conexion);
                 header("location:../frontend/solicitud.php?notif=1");
+                exit();
             }
             else
             {
@@ -35,6 +36,7 @@
                 {
                     desconectarBD($conexion);
                     header("location:../frontend/solicitud.php?notif=2");
+                    exit();
                 }
                 else
                 {
@@ -42,6 +44,7 @@
                     {
                         desconectarBD($conexion);
                         header("location:../frontend/solicitud.php?notif=3");
+                        exit();
                     }
                     else
                     {
@@ -50,6 +53,7 @@
                         {
                             desconectarBD($conexion);
                             header("location:../frontend/solicitud.php?notif=-1");
+                            exit();
                         }
 
                         if($existenCasilleros)//Si hay casilleros
@@ -59,11 +63,13 @@
                             {
                                 desconectarBD($conexion);
                                 header("location:../frontend/solicitud.php?notif=0");
+                                exit();
                             }
                             else
                             {
                                 desconectarBD($conexion);
                                 header("location:../frontend/solicitud.php?notif=-1");
+                                exit();
                             }
                         }
                         else//Si no hay casilleros
@@ -73,11 +79,13 @@
                             {
                                 desconectarBD($conexion);
                                 header("location:../frontend/solicitud.php?notif=4");
+                                exit();
                             }
                             else
                             {
                                 desconectarBD($conexion);
                                 header("location:../frontend/solicitud.php?notif=-1");
+                                exit();
                             }
                         }
                     }
@@ -87,18 +95,18 @@
         elseif($_POST["tipoSolicitud"] == 1) //Si es registro por renovacion
         {
             #VERIFICACIÓN DE EXISTENCIA DE DATOS
-            if(!isset($_POST['nombre'])) {header("location:../frontend/solicitud.php?notif=-3");}
-            if(!isset($_POST['paterno'])) {header("location:../frontend/solicitud.php?notif=-3");}
-            if(!isset($_POST['materno'])) {header("location:../frontend/solicitud.php?notif=-3");}
-            if(!isset($_POST['telefono'])) {header("location:../frontend/solicitud.php?notif=-3");}
-            if(!isset($_POST['estatura'])) {header("location:../frontend/solicitud.php?notif=-3");}
-            if(!isset($_POST['correo'])) {header("location:../frontend/solicitud.php?notif=-3");}
-            if(!isset($_POST['boleta'])) {header("location:../frontend/solicitud.php?notif=-3");}
-            if(!isset($_POST['casillero'])) {header("location:../frontend/solicitud.php?notif=-3");}
-            if(!isset($_POST['credencial'])) {header("location:../frontend/solicitud.php?notif=-3");}
-            if(!isset($_POST['horario'])) {header("location:../frontend/solicitud.php?notif=-3");}
-            if(!isset($_POST['usuario'])) {header("location:../frontend/solicitud.php?notif=-3");}
-            if(!isset($_POST['password'])) {header("location:../frontend/solicitud.php?notif=-3");}
+            if(!isset($_POST['nombre'])) {header("location:../frontend/solicitud.php?notif=-3"); exit();}
+            if(!isset($_POST['paterno'])) {header("location:../frontend/solicitud.php?notif=-3"); exit();}
+            if(!isset($_POST['materno'])) {header("location:../frontend/solicitud.php?notif=-3"); exit();}
+            if(!isset($_POST['telefono'])) {header("location:../frontend/solicitud.php?notif=-3"); exit();}
+            if(!isset($_POST['estatura'])) {header("location:../frontend/solicitud.php?notif=-3"); exit();}
+            if(!isset($_POST['correo'])) {header("location:../frontend/solicitud.php?notif=-3"); exit();}
+            if(!isset($_POST['boleta'])) {header("location:../frontend/solicitud.php?notif=-3"); exit();}
+            if(!isset($_POST['casillero'])) {header("location:../frontend/solicitud.php?notif=-3"); exit();}
+            if(!isset($_POST['credencial'])) {header("location:../frontend/solicitud.php?notif=-3"); exit();}
+            if(!isset($_POST['horario'])) {header("location:../frontend/solicitud.php?notif=-3"); exit();}
+            if(!isset($_POST['usuario'])) {header("location:../frontend/solicitud.php?notif=-3"); exit();}
+            if(!isset($_POST['password'])) {header("location:../frontend/solicitud.php?notif=-3"); exit();}
 
 
             $conexion = conectarBD();
@@ -134,35 +142,41 @@
                                     {
                                         desconectarBD($conexion);
                                         header("location:../frontend/solicitud.php?notif=10");
+                                        exit();
                                     }
                                     else
                                     {
                                         desconectarBD($conexion);
                                         header("location:../frontend/solicitud.php?notif=-1");
+                                        exit();
                                     }
                                 }
                                 else//Contraseña incorrecta
                                 {
                                     desconectarBD($conexion);
                                     header("location:../frontend/solicitud.php?notif=9");
+                                    exit();
                                 }
                             }
                             else//Correo incorrecto
                             {
                                 desconectarBD($conexion);
                                 header("location:../frontend/solicitud.php?notif=8");
+                                exit();
                             }
                         }
                         else//Usuario incorrecto
                         {
                             desconectarBD($conexion);
                             header("location:../frontend/solicitud.php?notif=7");
+                            exit();
                         }
                     }
                     else//Casillero incorrecto
                     {
                         desconectarBD($conexion);
                         header("location:../frontend/solicitud.php?notif=13");
+                        exit();
                     }
                     
                 }
@@ -179,6 +193,7 @@
                                 {
                                     desconectarBD($conexion);
                                     header("location:../frontend/solicitud.php?notif=-1");
+                                    exit();
                                 }
                                 if($existenCasilleros)//Si hay casilleros
                                 {
@@ -187,11 +202,13 @@
                                     {
                                         desconectarBD($conexion);
                                         header("location:../frontend/solicitud.php?notif=11");
+                                        exit();
                                     }
                                     else
                                     {
                                         desconectarBD($conexion);
                                         header("location:../frontend/solicitud.php?notif=-1");
+                                        exit();
                                     }
                                 }
                                 else//Si no hay casilleros
@@ -201,11 +218,13 @@
                                     {
                                         desconectarBD($conexion);
                                         header("location:../frontend/solicitud.php?notif=12");
+                                        exit();
                                     }
                                     else
                                     {
                                         desconectarBD($conexion);
                                         header("location:../frontend/solicitud.php?notif=-1");
+                                        exit();
                                     }
                                 }
                             }
@@ -213,24 +232,28 @@
                             {
                                 desconectarBD($conexion);
                                 header("location:../frontend/solicitud.php?notif=9");
+                                exit();
                             }
                         }
                         else//Correo incorrecto
                         {
                             desconectarBD($conexion);
                             header("location:../frontend/solicitud.php?notif=8");
+                            exit();
                         }
                     }
                     else//Usuario incorrecto
                     {
                         desconectarBD($conexion);
                         header("location:../frontend/solicitud.php?notif=7");
+                        exit();
                     }
                 }
                 else//Si el alumno se encuentra en algun otro estado que no requiere renovación
                 {
                     desconectarBD($conexion);
                     header("location:../frontend/solicitud.php?notif=6");
+                    exit();
                 }
             }
             else//Si no existe boleta
@@ -239,6 +262,7 @@
                 {
                     desconectarBD($conexion);
                     header("location:../frontend/solicitud.php?notif=3");
+                    exit();
                 }
                 else
                 {
@@ -246,6 +270,7 @@
                     {
                         desconectarBD($conexion);
                         header("location:../frontend/solicitud.php?notif=2");
+                        exit();
                     }
                     else
                     {
@@ -256,11 +281,13 @@
                             {
                                 desconectarBD($conexion);
                                 header("location:../frontend/solicitud.php?notif=0");
+                                exit();
                             }
                             else
                             {
                                 desconectarBD($conexion);
                                 header("location:../frontend/solicitud.php?notif=-1");
+                                exit();
                             }
                         }
                         else
@@ -270,6 +297,7 @@
                             {
                                 desconectarBD($conexion);
                                 header("location:../frontend/solicitud.php?notif=-1");
+                                exit();
                             }
 
                             if($existenCasilleros)//Si hay casilleros
@@ -279,11 +307,13 @@
                                 {
                                     desconectarBD($conexion);
                                     header("location:../frontend/solicitud.php?notif=0");
+                                    exit();
                                 }
                                 else
                                 {
                                     desconectarBD($conexion);
                                     header("location:../frontend/solicitud.php?notif=-1");
+                                    exit();
                                 }
                             }
                             else//Si no hay casilleros
@@ -293,11 +323,13 @@
                                 {
                                     desconectarBD($conexion);
                                     header("location:../frontend/solicitud.php?notif=4");
+                                    exit();
                                 }
                                 else
                                 {
                                     desconectarBD($conexion);
                                     header("location:../frontend/solicitud.php?notif=-1");
+                                    exit();
                                 }
                             }
                         }
@@ -309,5 +341,6 @@
     else
     {
         header("location:../frontend/solicitud.php?notif=-2"); //Método POST no detectado, denegar acceso
+        exit();
     }
 ?>

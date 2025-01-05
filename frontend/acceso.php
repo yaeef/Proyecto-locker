@@ -19,12 +19,32 @@
             <a class="nav__enlace" href="solicitud.php">Solicitud</a>
             <a class="nav__enlace boton--seleccion" href="acceso.php">Acceso</a>
             <a class="nav__enlace" href="admin.php">Admin</a>
-        </div>
+        </div> 
     </nav>
     <main>
         <section class="contenedor sombra">
         <h2 class="titulo-form">¡Consulta tu Acuse!</h2>
-        <form action="../backend/acuse.php" class="formulario" method="post">
+        <!--Manejo de notificaciones-->
+        <?php
+            require "notificaciones.php";
+            if(!empty($_GET) && isset($_GET['notif']))
+            {
+                global $notificaciones;
+                echo $notificaciones[$_GET['notif']];
+                ?>
+                <script> //Cierre automático de la notificación
+                    setTimeout(function()
+                    { 
+                        var alertElement = document.querySelector('.alert'); 
+                        var alertInstance = new bootstrap.Alert(alertElement); 
+                        alertInstance.close(); 
+                    }, 20000); 
+                </script>
+                <?php
+            }
+        ?>
+
+        <form action="../backend/acceso.php" class="formulario" method="post">
             <fieldset>
                 <legend>Inicio de sesión:</legend>
                 <div class="contenedor-campos">
