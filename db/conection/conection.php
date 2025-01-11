@@ -552,4 +552,72 @@
         }
         return 1;
     }
+
+    #Función de transición E->F | Alumno que sube comprobante
+    function transicionEF($conexion,$boletaAlumno)
+    {
+        //Almacenamiento de archivos en server
+        if(isset($_FILES['comprobante']))//Sí se recibio el archivo de comprobante
+        {
+            if(!$_FILES['comprobante']['error'])//Sí no hay error en el archivos
+            {
+                if($_FILES['comprobante']['type'] == 'application/pdf')//Guardando archivos en server
+                {
+                    $extencion = pathinfo($_FILES['comprobante']['name'], PATHINFO_EXTENSION);
+                    $serverNameComprobante = uniqid('comprobante_',true).'.'.$extencion;
+                    $dirDestinoComprobante = 'files/'.$boletaAlumno.'/'.$serverNameComprobante;
+
+                    if(!is_dir('../../files/'.$boletaAlumno)){ mkdir('../../files/'.$boletaAlumno, 0777, true);}
+
+                    $error = move_uploaded_file($_FILES['comprobante']['tmp_name'], "../../".$dirDestinoComprobante);
+                }
+                else
+                {
+                    echo "El archivo del comprobante no es de tipo PDF";
+                    return 1;
+                }
+            }
+            else
+            {
+                echo "El archivo pdf esta corrupto o excedió el tamaño límite aceptado";
+                return 1;
+            }
+        }
+        else
+        {
+            echo "Error al insertar debido a falta de archivo de comprobante: " . mysqli_error($conexion);
+            return 1;
+        }
+
+        $estadoAlumno = identificarEstado($conexion, $boletaAlumno);
+        
+        if($estadoAlumno == 'E') //Si se encuentra en estado E entonces se puede transicionar a F
+        {
+            //Definición de consulta para cambiar el estado del alumno
+            $query = "UPDATE Alumno SET estado = 'F' WHERE boleta = $boletaAlumno;";
+            //Ejecución de consulta
+            $resultado = mysqli_query($conexion,$query);
+
+            if(!$resultado)
+            {
+                echo "Error al actualizar el estado del alumno: " . mysqli_error($conexion);
+                return 1;
+            }
+            
+            $idAlumno = identificarAlumno($conexion,$boletaAlumno);
+
+            //Definición de consulta para cambiar el estado del alumno
+            $query = "UPDATE CasilleroAlumno SET comprobantePago = '$dirDestinoComprobante' WHERE idPersona = $idAlumno;";
+            //Ejecución de consulta
+            $resultado = mysqli_query($conexion,$query);
+
+            if(!$resultado)
+            {
+                echo "Error al actualizar el estado del alumno: " . mysqli_error($conexion);
+                return 1;
+            }
+            return 0;
+        }
+        return 1;
+    }
 ?>

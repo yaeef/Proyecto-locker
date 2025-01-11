@@ -25,10 +25,10 @@
     </header>
     <nav class="nav">
         <div class="nav__barra contenedor">
-            <a class="nav__enlace" href="#">Inicio</a>
-            <a class="nav__enlace" href="#">Solicitud</a>
-            <a class="nav__enlace boton--seleccion" href="../../../backend/logout.php">Log out</a>
-            <a class="nav__enlace" href="#">Admin</a>
+            <a class="nav__enlace" href="../../index.php">Inicio</a>
+            <a class="nav__enlace" href="../../solicitud.php">Solicitud</a>
+            <a class="nav__enlace boton--seleccion" href="../../../backend/logout.php">Logout</a>
+            <a class="nav__enlace" href="../../admin.php">Admin</a>
         </div> 
     </nav>
     <main>
@@ -70,7 +70,40 @@
             }
             if($_SESSION['estado'] == "E")
             {
-                echo '<h3 style="text-align: center;">Subir comprobante</h3>';
+                echo '
+                    <form action="../../../backend/profiles/alumno/comprobante.php" class="formulario" method="post" name="form-comprobante" id="form-comprobante" enctype="multipart/form-data">
+                        <fieldset>
+                            <legend>Sube tu comprobante de pago</legend>
+                            <div class="">
+                                <div class="formulario__campo">
+                                    <label for="comprobante">Comprobante de pago</label>
+                                    <label for="comprobante" class="botonArchivo">seleccionar comprobante</label>
+                                    <input type="file" name="comprobante" id="comprobante" accept="application/pdf" required style="display:none;">
+                                    <span id="nombreArchivo3" style="color: var(--primario);">Ningún archivo seleccionado</span>
+                                </div>
+                            </div>
+                            <div class="formulario__boton">
+                                <input class="boton" type="submit" value="Subir">
+                            </div>
+                        </fieldset>
+                    </form>
+                    <script>
+                        var comprobante = document.getElementById("comprobante");
+                        var nombreArchivo3 = document.getElementById("nombreArchivo3");
+
+                        comprobante.addEventListener("change", () =>
+                        {
+                            if(comprobante.files.length > 0)
+                            {
+                                nombreArchivo3.textContent = comprobante.files[0].name;
+                            }
+                            else
+                            {
+                                nombreArchivo3.textContent = "Ningún archivo seleccionado";
+                            }
+                        });
+                    </script>
+            ';
             }
             if($_SESSION['estado'] == "H")
             {

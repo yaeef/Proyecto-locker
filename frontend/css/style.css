@@ -396,7 +396,8 @@ footer
     text-align: center;
 }
 #nombreArchivo1,
-#nombreArchivo2
+#nombreArchivo2,
+#nombreArchivo3
 {
     color: var(--primario);
 }

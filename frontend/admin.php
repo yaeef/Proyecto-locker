@@ -17,7 +17,17 @@
         <div class="nav__barra contenedor">
             <a class="nav__enlace" href="index.php">Inicio</a>
             <a class="nav__enlace" href="solicitud.php">Solicitud</a>
-            <a class="nav__enlace" href="acceso.php">Acceso</a>
+            <?php
+                session_start();
+                if(isset($_SESSION['session']))
+                {
+                    echo '<a class="nav__enlace" href="profiles/alumno/alumno.php">Acceso</a>';
+                }
+                else
+                {
+                    echo '<a class="nav__enlace" href="acceso.php">Acceso</a>';
+                }
+            ?>
             <a class="nav__enlace boton--seleccion" href="admin.php">Admin</a>
         </div>
     </nav>
