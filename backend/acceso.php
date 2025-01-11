@@ -16,19 +16,28 @@
             $alumno = recuperarAlumnoConUsuario($conexion, $usuario);
             if(password_verify($password, $alumno['contrasena']))
             {
-                session_start();
-                $_SESSION['nombre'] = $alumno['nombre'];
-                $_SESSION['paterno'] = $alumno['paterno'];
-                $_SESSION['materno'] = $alumno['materno'];
-                $_SESSION['estado'] = $alumno['estado'];
-                $_SESSION['usuario'] = $alumno['usuario'];
-                $_SESSION['casillero'] = $alumno['casillero'];
-                $_SESSION['boleta'] = $alumno['boleta'];
-                $_SESSION['session'] = 1;
+                if($alumno['estado'] == 'B' || $alumno['estado'] == 'E' || $alumno['estado'] == 'H')
+                {
+                    session_start();
+                    $_SESSION['nombre'] = $alumno['nombre'];
+                    $_SESSION['paterno'] = $alumno['paterno'];
+                    $_SESSION['materno'] = $alumno['materno'];
+                    $_SESSION['estado'] = $alumno['estado'];
+                    $_SESSION['usuario'] = $alumno['usuario'];
+                    $_SESSION['casillero'] = $alumno['casillero'];
+                    $_SESSION['boleta'] = $alumno['boleta'];
+                    $_SESSION['session'] = 1;
 
-                desconectarBD($conexion);
-                header("location:../frontend/profiles/alumno/alumno.php");
-                exit();
+                    desconectarBD($conexion);
+                    header("location:../frontend/profiles/alumno/alumno.php");
+                    exit();
+                }
+                else
+                {
+                    desconectarBD($conexion);
+                    header("location:../frontend/acceso.php?notif=22");
+                    exit();
+                }
             }
             else
             {

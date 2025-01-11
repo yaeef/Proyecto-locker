@@ -1,6 +1,6 @@
 <?php
     session_start();
-    if(!isset($_SESSION['session']))
+    if(!isset($_SESSION['session']) && !($_SESSION['estado'] == 'B' || $_SESSION['estado'] == 'E' || $$_SESSION['estado'] == 'H'))
     {
         header("location:../../acceso.php?notif=200");
         exit();
@@ -21,7 +21,7 @@
 <body>
     <header class="header">
         <h1 class="header__titulo centrar-texto"><span></span>LOCKER <span>ESCOM</span></h1>
-        <img src="img/menu-resp.png" alt="Burger-Menu" class="menu-resp">
+        <img src="../../img/menu-resp.png" alt="Burger-Menu" class="menu-resp">
     </header>
     <nav class="nav">
         <div class="nav__barra contenedor">
@@ -33,7 +33,51 @@
     </nav>
     <main>
         <section class="contenedor sombra">
-        <?php echo '<h2 class="titulo-form"> Bienvenido @' . $_SESSION['usuario'] . '</h2>';?>
+        <?php 
+            echo '<h2 class="titulo-form"> Bienvenido @' . $_SESSION['usuario'] . '</h2>';
+
+            if($_SESSION['estado'] == "B")
+            {
+                echo '
+                        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg-custom">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Términos y Condiciones</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" disabled></button>
+                            </div>
+                            <div class="modal-body">
+                                <img src="../../img/terminos.png" alt="Imagen de Términos y condiciones para el uso de casilleros de ESCOM">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" onclick="window.location.href=\'../../../backend/profiles/alumno/rechazar.php\'">Rechazar</button>
+                                <button type="button" class="btn btn-primary" onclick="window.location.href=\'../../../backend/profiles/alumno/aceptar.php\'">Aceptar</button>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    <script>
+                        document.addEventListener("DOMContentLoaded", function() { var myModal = new bootstrap.Modal(document.getElementById("staticBackdrop"), { backdrop: "static", keyboard: false }); myModal.show(); });
+                    </script>
+                    <style>
+                        .modal-backdrop { background-color: rgba(0, 0, 0, 1); }
+                        @media only screen and (min-width: 1000px)
+                        {
+                            .modal-lg-custom { max-width: 45%; }
+                        }       
+                    </style>
+                    ';
+            }
+            if($_SESSION['estado'] == "E")
+            {
+                echo '<h3 style="text-align: center;">Subir comprobante</h3>';
+            }
+            if($_SESSION['estado'] == "H")
+            {
+                echo '<h3 style="text-align: center;">Descargar acuse</h3>';
+            }
+            
+        ?>
 
         </section>
     </main>

@@ -22,6 +22,8 @@
     #Notificaciones de login usuario
     $notificaciones[20] = '<div class="alert alert-danger alert-dismissible fade show" role="alert" style="width: min(60rem, 100%); margin: 3rem auto; text-align: center;">Usuario no encontrado<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></div>';
     $notificaciones[21] = '<div class="alert alert-danger alert-dismissible fade show" role="alert" style="width: min(60rem, 100%); margin: 3rem auto; text-align: center;">Usuario o contraseña incorrecta<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></div>';
+    $notificaciones[22] = '<div class="alert alert-warning alert-dismissible fade show" role="alert" style="width: min(60rem, 100%); margin: 3rem auto; text-align: center;">Actualmente tu cuenta no tiene una sesión habilitada, solicita un casillero o intentalo más tarde.<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></div>';
+    $notificaciones[23] = '<div class="alert alert-danger alert-dismissible fade show" role="alert" style="width: min(60rem, 100%); margin: 3rem auto; text-align: center;">No aceptaste los términos y condiciones del casillero que se te asigno por lo que se reasigno ese casillero, puedes realizar una solicitud de casillero nuevamente.<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></div>';
 
     #Cierre de sesion
     $notificaciones[100] = '<div class="alert alert-success alert-dismissible fade show" role="alert" style="width: min(60rem, 100%); margin: 3rem auto; text-align: center;">Cerraste sesión<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></div>';
