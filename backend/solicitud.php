@@ -13,8 +13,8 @@
             if(!isset($_POST['estatura'])) {header("location:../frontend/solicitud.php?notif=-3"); exit();}
             if(!isset($_POST['correo'])) {header("location:../frontend/solicitud.php?notif=-3"); exit();}
             if(!isset($_POST['boleta'])) {header("location:../frontend/solicitud.php?notif=-3"); exit();}
-            if(!isset($_POST['credencial'])) {header("location:../frontend/solicitud.php?notif=-3"); exit();}
-            if(!isset($_POST['horario'])) {header("location:../frontend/solicitud.php?notif=-3"); exit();}
+            if(!isset($_FILES['credencial'])) {header("location:../frontend/solicitud.php?notif=-3"); exit();}
+            if(!isset($_FILES['horario'])) {header("location:../frontend/solicitud.php?notif=-3"); exit();}
             if(!isset($_POST['usuario'])) {header("location:../frontend/solicitud.php?notif=-3"); exit();}
             if(!isset($_POST['password'])) {header("location:../frontend/solicitud.php?notif=-3"); exit();}
 
@@ -103,8 +103,8 @@
             if(!isset($_POST['correo'])) {header("location:../frontend/solicitud.php?notif=-3"); exit();}
             if(!isset($_POST['boleta'])) {header("location:../frontend/solicitud.php?notif=-3"); exit();}
             if(!isset($_POST['casillero'])) {header("location:../frontend/solicitud.php?notif=-3"); exit();}
-            if(!isset($_POST['credencial'])) {header("location:../frontend/solicitud.php?notif=-3"); exit();}
-            if(!isset($_POST['horario'])) {header("location:../frontend/solicitud.php?notif=-3"); exit();}
+            if(!isset($_FILES['credencial'])) {header("location:../frontend/solicitud.php?notif=-3"); exit();}
+            if(!isset($_FILES['horario'])) {header("location:../frontend/solicitud.php?notif=-3"); exit();}
             if(!isset($_POST['usuario'])) {header("location:../frontend/solicitud.php?notif=-3"); exit();}
             if(!isset($_POST['password'])) {header("location:../frontend/solicitud.php?notif=-3"); exit();}
 
