@@ -1,0 +1,4 @@
+#Ingnorar archivos .drawio. Son diagramas de diseño
+*.drawio
+*.drawio.bkp
+*.drawio.dtmp
