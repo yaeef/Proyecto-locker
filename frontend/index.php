@@ -17,7 +17,7 @@
     <nav class="nav">
         <div class="nav__barra contenedor">
             <a class="nav__enlace boton--seleccion" href="index.php">Inicio</a>
-            <a class="nav__enlace" href="solicitud.php">Solicitud</a>
+            <a class="nav__enlace" href="solicitud.php">Registro</a>
             <?php
                 session_start();
                 if(isset($_SESSION['session']))
@@ -70,29 +70,102 @@
         </button>
     </div>
     <main class="contenedor sombra">
-        <h2 class="actividadesTitulo">Actividades culturales</h2>
+        <h2 class="actividadesTitulo ">Actividades Culturales</h2>
+        <h3 class="centrar-texto">La ESCOM cuenta con los siguientes talleres culturales</h3>
         <div class="actividades">
             <section class="actividad">
-                <h3>Actividad 1</h3>
+                <h3 class="actividadesSubtitulo">Artes Plásticas</h3>
                 <div class="icono">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" width="40" height="40" stroke-width="1.5"> <path d="M12 21a9 9 0 0 1 0 -18c4.97 0 9 3.582 9 8c0 1.06 -.474 2.078 -1.318 2.828c-.844 .75 -1.989 1.172 -3.182 1.172h-2.5a2 2 0 0 0 -1 3.75a1.3 1.3 0 0 1 -1 2.25"></path> <path d="M8.5 10.5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"></path> <path d="M12.5 7.5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"></path> <path d="M16.5 10.5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"></path> </svg> 
                 </div>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea tenetur perspiciatis quidem veritatis velit in sint dolor</p>
+                <p>
+                    Aprende a expresar tus emociones y sentimientos por medio de la pintura y el dibujo.
+                    <br>
+                    <b>Profra.</b> Martha Aurora Torres Hernández<br>
+                    <b>Horario:</b> Miércoles y Viernes de 13:00 a 18:00hrs.
+                </p>
             </section>
             <section class="actividad">
-                <h3>Actividad 2</h3>
+                <h3>Creación literaria</h3>
                 <div class="icono">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" width="40" height="40" stroke-width="1.5"> <path d="M4 10l0 6"></path> <path d="M20 10l0 6"></path> <path d="M7 9h10v8a1 1 0 0 1 -1 1h-8a1 1 0 0 1 -1 -1v-8a5 5 0 0 1 10 0"></path> <path d="M8 3l1 2"></path> <path d="M16 3l-1 2"></path> <path d="M9 18l0 3"></path> <path d="M15 18l0 3"></path> </svg> 
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" width="40" height="40" stroke-width="1.5"> <path d="M8.286 7.008c-3.216 0 -4.286 3.23 -4.286 5.92c0 3.229 2.143 8.072 4.286 8.072c1.165 -.05 1.799 -.538 3.214 -.538c1.406 0 1.607 .538 3.214 .538s4.286 -3.229 4.286 -5.381c-.03 -.011 -2.649 -.434 -2.679 -3.23c-.02 -2.335 2.589 -3.179 2.679 -3.228c-1.096 -1.606 -3.162 -2.113 -3.75 -2.153c-1.535 -.12 -3.032 1.077 -3.75 1.077c-.729 0 -2.036 -1.077 -3.214 -1.077z"></path> <path d="M12 4a2 2 0 0 0 2 -2a2 2 0 0 0 -2 2"></path> </svg> 
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="40" height="40" stroke-width="1.5">
+                        <path d="M3 19a9 9 0 0 1 9 0a9 9 0 0 1 9 0"></path>
+                        <path d="M3 6a9 9 0 0 1 9 0a9 9 0 0 1 9 0"></path>
+                        <path d="M3 6l0 13"></path>
+                        <path d="M12 6l0 13"></path>
+                        <path d="M21 6l0 13"></path>
+                    </svg>
                 </div>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea tenetur perspiciatis quidem veritatis velit in sint dolor</p>
+                <p>
+                    Podrás adquirir técnicas y métodos para formar hábitos de lectura y escritura. Además prepara a los alumnos para participar en concursos de poesía, cuento, lectura en atril y declamación.
+                    <br>
+                    <b>Prof.</b> Julián Castruita Morán<br>
+                    <b>Horario:</b> Jueves de 11:00 a 16:00hrs.
+                </p>
             </section>
             <section class="actividad">
-                <h3>Actividad 3</h3>
+                <h3>Teatro</h3>
                 <div class="icono">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" width="40" height="40" stroke-width="1.5"> <path d="M8.286 7.008c-3.216 0 -4.286 3.23 -4.286 5.92c0 3.229 2.143 8.072 4.286 8.072c1.165 -.05 1.799 -.538 3.214 -.538c1.406 0 1.607 .538 3.214 .538s4.286 -3.229 4.286 -5.381c-.03 -.011 -2.649 -.434 -2.679 -3.23c-.02 -2.335 2.589 -3.179 2.679 -3.228c-1.096 -1.606 -3.162 -2.113 -3.75 -2.153c-1.535 -.12 -3.032 1.077 -3.75 1.077c-.729 0 -2.036 -1.077 -3.214 -1.077z"></path> <path d="M12 4a2 2 0 0 0 2 -2a2 2 0 0 0 -2 2"></path> </svg> 
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="40" height="40" stroke-width="1.5">
+                        <path d="M13.192 9h6.616a2 2 0 0 1 1.992 2.183l-.567 6.182a4 4 0 0 1 -3.983 3.635h-1.5a4 4 0 0 1 -3.983 -3.635l-.567 -6.182a2 2 0 0 1 1.992 -2.183z"></path>
+                        <path d="M15 13h.01"></path>
+                        <path d="M18 13h.01"></path>
+                        <path d="M15 16.5c1 .667 2 .667 3 0"></path>
+                        <path d="M8.632 15.982a4.037 4.037 0 0 1 -.382 .018h-1.5a4 4 0 0 1 -3.983 -3.635l-.567 -6.182a2 2 0 0 1 1.992 -2.183h6.616a2 2 0 0 1 2 2"></path>
+                        <path d="M6 8h.01"></path>
+                        <path d="M9 8h.01"></path>
+                        <path d="M6 12c.764 -.51 1.528 -.63 2.291 -.36"></path>
+                    </svg>
                 </div>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea tenetur perspiciatis quidem veritatis velit in sint dolor</p>
+                <p>
+                    Aprende a expresarte en público a través de diversas técnicas teatrales, contribuyendo así a un mejor desarrollo integral.
+                    <br>
+                    <b>Profra.</b> Verónica Hernández<br>
+                    <b>Horario:</b> Martes de 12:00 a 15:00hrs y Miércoles de 15:30 a 18:30hrs.
+                </p>
+            </section>
+        </div>  
+        <hr><br>
+        <h2 class="actividadesTitulo">Actividades Deportivas</h2>
+        <p class="centrar-texto">La ESCOM participa activamente en diferentes actividades a través de 
+            selecciones y equipos representatitos en torneos internos e interpolitécnicos.
+        </p>
+        <div class="actividades">
+            <section class="actividad">
+                <h3 class="actividadesSubtitulo">Fútbol: Soccer, Siete y Rápido (varonil/femenil)</h3>
+                <div class="icono">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="40" height="40" stroke-width="1.5"> <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path> <path d="M12 7l4.76 3.45l-1.76 5.55h-6l-1.76 -5.55z"></path> <path d="M12 7v-4m3 13l2.5 3m-.74 -8.55l3.74 -1.45m-11.44 7.05l-2.56 2.95m.74 -8.55l-3.74 -1.45"></path> </svg> 
+                </div>
+                <p>
+                    <b>Prof.</b> Diego Espinosa Gómez<br>
+                    <b>Horario:</b> Martes de 16:00 a 19:00hrs, Miércoles de 10:00 a 18:00hrs y Viernes de 12:00 a 20:00hrs.
+                </p>
+            </section>
+            <section class="actividad">
+                <h3>Voleibol (varonil/fememil)</h3>
+                <div class="icono">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="40" height="40" stroke-width="1.5"> <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path> <path d="M12 12a8 8 0 0 0 8 4"></path> <path d="M7.5 13.5a12 12 0 0 0 8.5 6.5"></path> <path d="M12 12a8 8 0 0 0 -7.464 4.928"></path> <path d="M12.951 7.353a12 12 0 0 0 -9.88 4.111"></path> <path d="M12 12a8 8 0 0 0 -.536 -8.928"></path> <path d="M15.549 15.147a12 12 0 0 0 1.38 -10.611"></path> </svg> 
+                </div>
+                <p>
+                    <b>Prof.</b> Hugo Hernández	Vera<br>
+                    <b>Horario:</b> Martes y Jueves de 12:00 a 19:00hrs.
+                </p>
+            </section>
+            <section class="actividad">
+                <h3>Clubes deportivos (varonil/femenil)</h3>
+                <div class="icono">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="40" height="40" stroke-width="1.5"> <path d="M8 16l-1.447 .724a1 1 0 0 0 -.553 .894v2.382h12v-2.382a1 1 0 0 0 -.553 -.894l-1.447 -.724h-8z"></path> <path d="M9 3l1 3l-3.491 2.148a1 1 0 0 0 .524 1.852h2.967l-2.073 6h7.961l.112 -5c0 -3 -1.09 -5.983 -4 -7c-1.94 -.678 -2.94 -1.011 -3 -1z"></path> </svg> 
+                </div>
+                <p>
+                    <ul>
+                        <li>Taekwondo</li>
+                        <li>Ajedrez</li>
+                        <li>Barras</li>
+                        <li>Ping Pong</li>
+                        <li>Tochito bandera</li>
+                    </ul>
+                    Para más información consulta: <a href="https://www.facebook.com/ESCOMculturaydeportes" target="_blank">Actividades Culturales y Deportivas ESCOM</a>
+                </p>
             </section>
         </div>
     </main>

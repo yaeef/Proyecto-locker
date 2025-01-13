@@ -55,7 +55,7 @@
     <nav class="nav">
         <div class="nav__barra contenedor">
             <a class="nav__enlace" href="../../index.php">Inicio</a>
-            <a class="nav__enlace" href="../../solicitud.php">Solicitud</a>
+            <a class="nav__enlace" href="../../solicitud.php">Registro</a>
             <a class="nav__enlace boton--seleccion" href="alumno.php">Acceso</a>
             <a class="nav__enlace" href="../../admin.php">Admin</a>
         </div> 

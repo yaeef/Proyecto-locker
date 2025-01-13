@@ -16,7 +16,7 @@
     <nav class="nav">
         <div class="nav__barra contenedor">
             <a class="nav__enlace" href="index.php">Inicio</a>
-            <a class="nav__enlace" href="solicitud.php">Solicitud</a>
+            <a class="nav__enlace" href="solicitud.php">Registro</a>
             <?php
                 session_start();
                 if(isset($_SESSION['session']))
