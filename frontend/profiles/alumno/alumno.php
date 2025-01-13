@@ -17,6 +17,35 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="../../css/style.css">
     <title>Acceso</title>
+    <style>
+        .card
+        { 
+            margin: 1rem auto;
+            display: grid; 
+            grid-template-columns: 1fr 5fr;
+            align-items: center; 
+            border: 1px solid #ccc; 
+            border-radius: 8px; 
+
+            padding: 10px; 
+            width: min(40rem, 100%);
+        } 
+        .icon 
+        { 
+            margin-right: 10px; 
+        } 
+        .icon img 
+        { 
+            width: 24px; height: 24px; 
+        } 
+        .info 
+        { font-size: 16px; 
+        } 
+        .info span 
+        { 
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
     <header class="header">
@@ -27,7 +56,7 @@
         <div class="nav__barra contenedor">
             <a class="nav__enlace" href="../../index.php">Inicio</a>
             <a class="nav__enlace" href="../../solicitud.php">Solicitud</a>
-            <a class="nav__enlace boton--seleccion" href="../../../backend/logout.php">Logout</a>
+            <a class="nav__enlace boton--seleccion" href="alumno.php">Acceso</a>
             <a class="nav__enlace" href="../../admin.php">Admin</a>
         </div> 
     </nav>
@@ -107,8 +136,70 @@
             }
             if($_SESSION['estado'] == "H")
             {
-                echo '<h3 style="text-align: center;">Descargar acuse</h3>';
-            }
+                echo    '<div class="alert alert-success alert-dismissible fade show" role="alert" style="width: min(60rem, 100%); margin: 3rem auto; text-align: center;">El pago de tu casillero procedió, a continuación podras descargar el acuse en el cual puedes obtener la información completa de tu casillero.<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></div>';
+                
+                echo '  <div class="card"> 
+                            <div class="icon"> 
+                                <img src="../../img/user.png" alt="Nombre"> 
+                            </div> 
+                            <div class="info"> 
+                                <span>Nombre: </span>'. ucfirst($_SESSION['nombre']) .'
+                            </div> 
+                        </div> 
+                        <div class="card"> 
+                            <div class="icon"> 
+                                <img src="../../img/user.png" alt="Apellido Paterno"> 
+                            </div> 
+                            <div class="info"> 
+                                <span>Apellido Paterno: </span>' . ucfirst($_SESSION['paterno']) .'
+                            </div> 
+                        </div> 
+                        <div class="card"> 
+                            <div class="icon"> 
+                                <img src="../../img/user.png" alt="Apellido Materno"> 
+                            </div> 
+                            <div class="info"> 
+                                <span>Apellido Materno: </span>' . ucfirst($_SESSION['materno']) .'
+                            </div>
+                        </div>
+                        <div class="card"> 
+                            <div class="icon"> 
+                                <img src="../../img/fingerprint.png" alt="Boleta"> 
+                            </div> 
+                            <div class="info"> 
+                                <span>Boleta: </span>' . $_SESSION['boleta'] .'
+                            </div>
+                        </div>
+                        <div class="card"> 
+                            <div class="icon"> 
+                                <img src="../../img/locker.png" alt="casillero"> 
+                            </div> 
+                            <div class="info"> 
+                                <span>Casillero: </span>' . $_SESSION['casillero'] .'
+                            </div>
+                        </div>
+                        <div class="card"> 
+                            <div class="icon"> 
+                                <img src="../../img/schedule.png" alt="Semestre"> 
+                            </div> 
+                            <div class="info"> 
+                                <span>Semestre: </span>  2025-1
+                            </div>
+                        </div>
+                        <div class="card"> 
+                            <div class="icon"> 
+                                <img src="../../img/height.png" alt="Estatura"> 
+                            </div> 
+                            <div class="info"> 
+                                <span>estatura: </span>' . $_SESSION['estatura'] .'
+                            </div>
+                        </div>';
+
+                echo    '<div class="formulario__boton">
+                            <input class="boton" type="button" onclick="window.location.href=\'../../../backend/logout.php\'" value="Logout" style="background-color:red;">
+                            <input class="boton" type="button" onclick="window.open(\'../../../backend/profiles/alumno/acuse.php\',\'_blank\')" value="Acuse">
+                        </div>';
+            }           
             
         ?>
 
