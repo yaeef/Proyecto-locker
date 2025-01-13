@@ -199,6 +199,145 @@
                             <input class="boton" type="button" onclick="window.location.href=\'../../../backend/logout.php\'" value="Logout" style="background-color:red;">
                             <input class="boton" type="button" onclick="window.open(\'../../../backend/profiles/alumno/acuse.php\',\'_blank\')" value="Acuse">
                         </div>';
+            }
+            if($_SESSION['estado'] == "F" || $_SESSION['estado'] == "I")
+            {
+                if($_SESSION['estado'] == "F")
+                {
+                    echo    '<div class="alert alert-warning alert-dismissible fade show" role="alert" style="width: min(60rem, 100%); margin: 3rem auto; text-align: center;">Tu pago esta en revisión, inicia sesión dentro de 24 horas.<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></div>';
+                }
+                elseif($_SESSION['estado'] == "I")
+                {
+                    echo    '<div class="alert alert-warning alert-dismissible fade show" role="alert" style="width: min(60rem, 100%); margin: 3rem auto; text-align: center;">Debes renovar tu casillero debido al fin de semestre, tienes una semana para renovarlo.<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></div>';
+                }
+                echo '  <div class="card"> 
+                            <div class="icon"> 
+                                <img src="../../img/user.png" alt="Nombre"> 
+                            </div> 
+                            <div class="info"> 
+                                <span>Nombre: </span>'. ucfirst($_SESSION['nombre']) .'
+                            </div> 
+                        </div> 
+                        <div class="card"> 
+                            <div class="icon"> 
+                                <img src="../../img/user.png" alt="Apellido Paterno"> 
+                            </div> 
+                            <div class="info"> 
+                                <span>Apellido Paterno: </span>' . ucfirst($_SESSION['paterno']) .'
+                            </div> 
+                        </div> 
+                        <div class="card"> 
+                            <div class="icon"> 
+                                <img src="../../img/user.png" alt="Apellido Materno"> 
+                            </div> 
+                            <div class="info"> 
+                                <span>Apellido Materno: </span>' . ucfirst($_SESSION['materno']) .'
+                            </div>
+                        </div>
+                        <div class="card"> 
+                            <div class="icon"> 
+                                <img src="../../img/fingerprint.png" alt="Boleta"> 
+                            </div> 
+                            <div class="info"> 
+                                <span>Boleta: </span>' . $_SESSION['boleta'] .'
+                            </div>
+                        </div>
+                        <div class="card"> 
+                            <div class="icon"> 
+                                <img src="../../img/locker.png" alt="casillero"> 
+                            </div> 
+                            <div class="info"> 
+                                <span>Casillero: </span>' . $_SESSION['casillero'] .'
+                            </div>
+                        </div>
+                        <div class="card"> 
+                            <div class="icon"> 
+                                <img src="../../img/schedule.png" alt="Semestre"> 
+                            </div> 
+                            <div class="info"> 
+                                <span>Semestre: </span>  2025-1
+                            </div>
+                        </div>
+                        <div class="card"> 
+                            <div class="icon"> 
+                                <img src="../../img/height.png" alt="Estatura"> 
+                            </div> 
+                            <div class="info"> 
+                                <span>estatura: </span>' . $_SESSION['estatura'] .'
+                            </div>
+                        </div>';
+
+                echo    '<div class="formulario__boton">
+                            <input class="boton" type="button" onclick="window.location.href=\'../../../backend/logout.php\'" value="Logout" style="background-color:red;">
+                        </div>';
+            }
+            if($_SESSION['estado'] == "C" || $_SESSION['estado'] == "D" | $_SESSION['estado'] == "G")
+            {
+                if($_SESSION['estado'] == "C")
+                {
+                    echo    '<div class="alert alert-warning alert-dismissible fade show" role="alert" style="width: min(60rem, 100%); margin: 3rem auto; text-align: center;">Actualmente estas en liste de espera, no tienes casillero asignado.<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></div>';
+                }
+                elseif($_SESSION['estado'] == "D")
+                {
+                    echo    '<div class="alert alert-warning alert-dismissible fade show" role="alert" style="width: min(60rem, 100%); margin: 3rem auto; text-align: center;">Tu solicitud esta en proceso, en menos de 24 horas se te asignara un casillero.<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></div>';
+                }
+                elseif($_SESSION['estado'] == "G")
+                {
+                    echo    '<div class="alert alert-warning alert-dismissible fade show" role="alert" style="width: min(60rem, 100%); margin: 3rem auto; text-align: center;">En este momento no tienes casillero asignado y ninguna solicitud pendiente, solicita un casillero.<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></div>';
+                }
+                
+                echo '  <div class="card"> 
+                            <div class="icon"> 
+                                <img src="../../img/user.png" alt="Nombre"> 
+                            </div> 
+                            <div class="info"> 
+                                <span>Nombre: </span>'. ucfirst($_SESSION['nombre']) .'
+                            </div> 
+                        </div> 
+                        <div class="card"> 
+                            <div class="icon"> 
+                                <img src="../../img/user.png" alt="Apellido Paterno"> 
+                            </div> 
+                            <div class="info"> 
+                                <span>Apellido Paterno: </span>' . ucfirst($_SESSION['paterno']) .'
+                            </div> 
+                        </div> 
+                        <div class="card"> 
+                            <div class="icon"> 
+                                <img src="../../img/user.png" alt="Apellido Materno"> 
+                            </div> 
+                            <div class="info"> 
+                                <span>Apellido Materno: </span>' . ucfirst($_SESSION['materno']) .'
+                            </div>
+                        </div>
+                        <div class="card"> 
+                            <div class="icon"> 
+                                <img src="../../img/fingerprint.png" alt="Boleta"> 
+                            </div> 
+                            <div class="info"> 
+                                <span>Boleta: </span>' . $_SESSION['boleta'] .'
+                            </div>
+                        </div>
+                        <div class="card"> 
+                            <div class="icon"> 
+                                <img src="../../img/schedule.png" alt="Semestre"> 
+                            </div> 
+                            <div class="info"> 
+                                <span>Semestre: </span>  2025-1
+                            </div>
+                        </div>
+                        <div class="card"> 
+                            <div class="icon"> 
+                                <img src="../../img/height.png" alt="Estatura"> 
+                            </div> 
+                            <div class="info"> 
+                                <span>estatura: </span>' . $_SESSION['estatura'] .'
+                            </div>
+                        </div>';
+
+                echo    '<div class="formulario__boton">
+                            <input class="boton" type="button" onclick="window.location.href=\'../../../backend/logout.php\'" value="Logout" style="background-color:red;">
+                        </div>';
             }           
             
         ?>

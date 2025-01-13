@@ -52,6 +52,42 @@
                     header("location:../frontend/profiles/alumno/alumno.php");
                     exit();
                 }
+                elseif($alumno['estado'] == 'F' || $alumno['estado'] == 'I')
+                {
+                    session_start();
+                    $casilleroAlumno = identificarCasillero($conexion, $alumno['idPersona']);
+
+                    $_SESSION['nombre'] = $alumno['nombre'];
+                    $_SESSION['paterno'] = $alumno['paterno'];
+                    $_SESSION['materno'] = $alumno['materno'];
+                    $_SESSION['estado'] = $alumno['estado'];
+                    $_SESSION['usuario'] = $alumno['usuario'];
+                    $_SESSION['casillero'] = $casilleroAlumno;
+                    $_SESSION['boleta'] = $alumno['boleta'];
+                    $_SESSION['estatura'] = $alumno['estatura'];
+                    $_SESSION['session'] = 1;
+
+                    desconectarBD($conexion);
+                    header("location:../frontend/profiles/alumno/alumno.php");
+                    exit();
+                }
+                elseif($alumno['estado'] == 'C' || $alumno['estado'] == 'D' || $alumno['estado'] == 'G')
+                {
+                    session_start();
+
+                    $_SESSION['nombre'] = $alumno['nombre'];
+                    $_SESSION['paterno'] = $alumno['paterno'];
+                    $_SESSION['materno'] = $alumno['materno'];
+                    $_SESSION['estado'] = $alumno['estado'];
+                    $_SESSION['usuario'] = $alumno['usuario'];
+                    $_SESSION['boleta'] = $alumno['boleta'];
+                    $_SESSION['estatura'] = $alumno['estatura'];
+                    $_SESSION['session'] = 1;
+
+                    desconectarBD($conexion);
+                    header("location:../frontend/profiles/alumno/alumno.php");
+                    exit();
+                }
                 else
                 {
                     desconectarBD($conexion);

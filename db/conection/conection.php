@@ -436,6 +436,18 @@
                 echo "Error al actualizar el estado del alumno: " . mysqli_error($conexion);
                 return 1;
             }
+            
+            $idAlumno = identificarAlumno($conexion,$boletaAlumno);
+            //Definición de consulta que actualiza la fecha de la relación CasilleroAlumno
+            $query = "UPDATE CasilleroAlumno SET fechaSolicitud = CURRENT_TIMESTAMP WHERE idPersona = $idAlumno;";
+            //Ejecución de consulta
+            $resultado = mysqli_query($conexion,$query);
+
+            if(!$resultado)
+            {
+                echo "Error al actualizar la fecha de la relación CasilleroAlumno " . mysqli_error($conexion);
+                return 1;
+            }
             return 0;
         }
         return 1;
