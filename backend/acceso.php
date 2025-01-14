@@ -27,7 +27,7 @@
                     $_SESSION['casillero'] = $alumno['casillero'];
                     $_SESSION['boleta'] = $alumno['boleta'];
                     $_SESSION['estatura'] = $alumno['estatura'];
-                    $_SESSION['session'] = 1;
+                    $_SESSION['session'] = 'alumno';
 
                     desconectarBD($conexion);
                     header("location:../frontend/profiles/alumno/alumno.php");
@@ -46,7 +46,7 @@
                     $_SESSION['casillero'] = $casilleroAlumno;
                     $_SESSION['boleta'] = $alumno['boleta'];
                     $_SESSION['estatura'] = $alumno['estatura'];
-                    $_SESSION['session'] = 1;
+                    $_SESSION['session'] = 'alumno';
 
                     desconectarBD($conexion);
                     header("location:../frontend/profiles/alumno/alumno.php");
@@ -65,7 +65,7 @@
                     $_SESSION['casillero'] = $casilleroAlumno;
                     $_SESSION['boleta'] = $alumno['boleta'];
                     $_SESSION['estatura'] = $alumno['estatura'];
-                    $_SESSION['session'] = 1;
+                    $_SESSION['session'] = 'alumno';
 
                     desconectarBD($conexion);
                     header("location:../frontend/profiles/alumno/alumno.php");
@@ -82,7 +82,7 @@
                     $_SESSION['usuario'] = $alumno['usuario'];
                     $_SESSION['boleta'] = $alumno['boleta'];
                     $_SESSION['estatura'] = $alumno['estatura'];
-                    $_SESSION['session'] = 1;
+                    $_SESSION['session'] = 'alumno';
 
                     desconectarBD($conexion);
                     header("location:../frontend/profiles/alumno/alumno.php");

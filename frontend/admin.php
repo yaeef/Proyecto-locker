@@ -34,6 +34,25 @@
     <main>
         <section class="contenedor sombra">
         <h2 class="titulo-form">Perfil de Administrador</h2>
+        <!--Manejo de notificaciones-->
+        <?php
+            require "notificaciones.php";
+            if(!empty($_GET) && isset($_GET['notif']))
+            {
+                global $notificaciones;
+                echo $notificaciones[$_GET['notif']];
+                ?>
+                <script> //Cierre automático de la notificación
+                    setTimeout(function()
+                    { 
+                        var alertElement = document.querySelector('.alert'); 
+                        var alertInstance = new bootstrap.Alert(alertElement); 
+                        alertInstance.close(); 
+                    }, 20000); 
+                </script>
+                <?php
+            }
+        ?>
         <form action="../backend/admin.php" class="formulario" method="post">
             <fieldset>
                 <legend>Inicio de sesión:</legend>

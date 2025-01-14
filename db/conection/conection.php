@@ -51,6 +51,25 @@
         }
     }
 
+    #Función que evalua la existencia de un usuario Administrador
+    function evaluarExistenciaAdmin($conexion,$usuarioVerificar) 
+    {
+        $param = mysqli_real_escape_string($conexion,$usuarioVerificar);
+        $query = "SELECT existirAdmin('$usuarioVerificar') AS resultado;";
+        $resultado = mysqli_query($conexion,$query);
+
+        if($resultado)
+        {
+            $fila = mysqli_fetch_assoc($resultado);
+            $valor = $fila["resultado"];
+            return ($valor == 1) ? 1 : 0;
+        }
+        else
+        {
+            die("Consulta fallida de evaluación de existencia de administrador a MySQL: ". mysqli_error($conexion));
+        }
+    }
+
     #Función que evalua si hay casilleros disponibles
     function evaluarDisponibilidadCasilleros($conexion)
     {
@@ -191,6 +210,29 @@
         else
         {
             echo "Error al recuperar Alumno de la BD: " . mysqli_error($conexion);
+            return null;
+        }
+    }
+
+    #Función que recupera un Administrador desde la BD dado su usuario
+    function recuperarAdminConUsuario($conexion, $usuarioVerificar)
+    {
+        $query = "SELECT * FROM Admin WHERE usuario = '$usuarioVerificar'";
+        $resultado = mysqli_query($conexion,$query);
+
+        if($resultado)
+        {
+            $fila = mysqli_fetch_assoc($resultado);
+
+            if($fila == NULL)
+            {
+                return null;
+            }
+            return $fila;
+        }
+        else
+        {
+            echo "Error al recuperar Admin de la BD: " . mysqli_error($conexion);
             return null;
         }
     }
@@ -626,6 +668,39 @@
             if(!$resultado)
             {
                 echo "Error al actualizar el estado del alumno: " . mysqli_error($conexion);
+                return 1;
+            }
+            return 0;
+        }
+        return 1;
+    }
+
+    #Función de transición F->H | Alumno con pago válido
+    function transicionFH($conexion,$boletaAlumno, $casilleroAlumno)
+    {
+        $estadoAlumno = identificarEstado($conexion, $boletaAlumno);
+        
+        if($estadoAlumno == 'F') //Si se encuentra en estado F entonces se puede transicionar a H
+        {
+            //Definición de consulta para cambiar el estado del alumno
+            $query = "UPDATE Alumno SET estado = 'H' WHERE boleta = $boletaAlumno;";
+            //Ejecución de consulta
+            $resultado = mysqli_query($conexion,$query);
+
+            if(!$resultado)
+            {
+                echo "Error al actualizar el estado del alumno: " . mysqli_error($conexion);
+                return 1;
+            }
+
+            //Definición de consulta para cambiar el estado del alumno
+            $query = "UPDATE CasilleroAlumno SET pagado = 1 WHERE idCasillero = $casilleroAlumno;";
+            //Ejecución de consulta
+            $resultado = mysqli_query($conexion,$query);
+
+            if(!$resultado)
+            {
+                echo "Error al actualizar el estado del pago: " . mysqli_error($conexion);
                 return 1;
             }
             return 0;

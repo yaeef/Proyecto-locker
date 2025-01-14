@@ -1,6 +1,6 @@
 <?php
     session_start();
-    if(!isset($_SESSION['session']) && !($_SESSION['estado'] == 'B' || $_SESSION['estado'] == 'E' || $$_SESSION['estado'] == 'H'))
+    if(!isset($_SESSION['session']) || $_SESSION['session'] != 'alumno')
     {
         header("location:../../acceso.php?notif=200");
         exit();

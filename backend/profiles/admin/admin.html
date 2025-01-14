@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Casilleros</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        #casilleros 
+        {
+            display: grid;
+            gap: 5px;
+            justify-items: center;
+        }
+        @media only screen and (min-width: 1200px)
+        {
+            #casilleros
+            {
+                grid-template-columns: repeat(25,1fr);
+            }
+        }
+        @media only screen and (max-width: 1199px) and (min-width: 992px)
+        {
+            #casilleros
+            {
+                grid-template-columns: repeat(20,1fr);
+            }
+        }
+        @media only screen and (max-width: 991px) and (min-width: 768px)
+        {
+            #casilleros
+            {
+                grid-template-columns: repeat(10,1fr);
+            }
+        }
+        @media only screen and (max-width: 767px)
+        {
+            #casilleros
+            {
+                grid-template-columns: repeat(5,1fr);
+            }
+        }
+        .casillero
+        {
+            width: 100%;
+            padding-top: 100%;
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .casillero .numero
+        {
+            position: absolute;
+            top: 80%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px black;
+        }
+        .pendiente
+        {
+            background-image: url(../../../frontend/img/pendiente.png);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+        }
+        .ocupado
+        {
+            background-image: url(../../../frontend/img/ocupado.png);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+        }
+        .disponible
+        {
+            background-image: url(../../../frontend/img/disponible.png);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+        }
+        .pendiente:hover,
+        .ocupado:hover,
+        .disponible:hover
+        {
+            transform: scale(1,1);
+        }
+    </style>
+</head>
+<body>
+
+<div id="casilleros">
+    <!-- Casilleros se llenarán dinámicamente -->
+</div>
+
+<!-- Modal structure -->
+<div class="modal fade" id="lockerModal" tabindex="-1" aria-labelledby="lockerModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title fs-5" id="lockerModalLabel">Detalles del Casillero</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="modalContent">
+                <!-- Modal content will be populated with JavaScript -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#lockerModal">Launch</button>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+        //Obtención de datos json con AJAX
+        $.ajax
+        ({
+            url: 'obtenerDatos.php',
+            type: 'GET',
+            success:function(data) //Se pasa como parametro los datos JSON obtenidos en obtenerDatos.php
+                    {
+                        var contenedorCasilleros = document.getElementById('casilleros');
+                        var alumnosConCasillero = data.alumnosConCasillero;
+                        var alumnosSinCasillero = data.alumnosSinCasillero;
+                        var casilleros = data.casilleros;
+                        
+                        casilleros.forEach(function(casillero){  //Casillero representa una instancia de la variable casilleros
+                            var casilleroDiv = document.createElement('div');
+                            if(casillero.asignado == 1 && casillero.pagado == 0)
+                            {
+                                casilleroDiv.className = 'casillero pendiente';
+                            }
+                            else if(casillero.asignado == 1 && casillero.pagado == 1)
+                            {
+                                casilleroDiv.className = 'casillero ocupado';
+                            }
+                            else
+                            {
+                                casilleroDiv.className = 'casillero disponible';
+                            }
+                            casilleroDiv.setAttribute('data-id', casillero.idCasillero);
+                            casilleroDiv.setAttribute('data-asignado', casillero.asignado);
+
+                            var numeroDiv = document.createElement('div');
+                            numeroDiv.className = 'numero';
+                            numeroDiv.textContent = casillero.idCasillero;
+                            casilleroDiv.appendChild(numeroDiv);
+
+                            if(casillero.asignado)
+                            {
+                                casilleroDiv.setAttribute('data-propietario', casillero.nombre + ' ' + casillero.paterno + ' ' + casillero.materno);
+                                casilleroDiv.setAttribute('data-pagado',casillero.pagado);
+                                casilleroDiv.setAttribute('data-propietarioBoleta', casillero.boleta);
+                                casilleroDiv.setAttribute('data-estado',casillero.estado);
+                                casilleroDiv.setAttribute('data-idPropietario',casillero.idPersona)
+                                casilleroDiv.setAttribute('data-comprobantePago',casillero.comprobantePago);
+
+                            }
+
+                            casilleroDiv.addEventListener('click', function()
+                            {
+                                var asignado = this.getAttribute('data-asignado');
+                                var modalContenido = '';
+
+                                if(asignado == "0") //Si la instancia de casillero esta libre
+                                {
+                                    modalConenido = 'Selecciona un alumno para asignar este casillero: ';
+                                    alumnosSinCasillero.forEach(function(alumno)   //Alumno representa una instancia de alumnosSinCasillero
+                                    {
+                                        modalContenido += '<button style="margin: 5px 0;" class="btn btn-light" onclick="asignarCasillero(' +casillero.idCasillero + ', ' + alumno.idPersona + ')">' + alumno.boleta + ' | ' + alumno.nombre + ' ' + alumno.paterno + ' ' + alumno.materno + ' | ' + alumno.estatura + ' cm</button><br>';
+                                    });
+                                }
+                                else //Si la instancia de casillero esta ocupada
+                                {
+                                    var propietario = this.getAttribute('data-propietario'); //Se obtiene de los atributos que asignó previamente en casillero.forEach
+                                    var pagado = this.getAttribute('data-pagado');
+                                    var boleta = this.getAttribute('data-propietarioBoleta');
+                                    var comprobantePago = this.getAttribute('data-comprobantePago');
+
+                                    if(pagado == "1") //Si el casillero esta pagado
+                                    {
+                                        modalContenido = 'Información del casillero: <br>';
+                                        modalContenido += 'Propietario: ' + propietario + '<br>';
+                                        modalContenido += 'boleta: ' + boleta + '<br>';
+                                        modalContenido += 'semestre: 2024/2025-2 (febrero-agosto)';
+                                        modalContenido += '<br><br><button class="btn btn-primary" onclick="mostrarComprobantePago(\'' + comprobantePago + '\')">Mostrar comprobante</button>';
+                                    }
+                                    else //Si el casillero no esta pagado          AQUI CHECAR EN QUE ESTADO ESTA Y MOSTRAR DISTINTO MODAL, AGREGUÉ ESTADO A CASILLERO
+                                    {
+                                        var comprobantePago = this.getAttribute('data-comprobantePago');
+                                        var estado = this.getAttribute('data-estado');
+                                        var idPersona = this.getAttribute('data-idPropietario');
+                                        modalContenido = 'Infomación del casillero: <br>';
+
+                                        if(estado == "B")
+                                        {
+                                            modalContenido += 'El alumno ' + propietario  + ' con boleta [' + boleta + '] aun no acepta términos y condiciones.'; 
+                                        }
+                                        else if(estado == "E")
+                                        {
+                                            modalContenido += 'El alumno ' + propietario  + ' con boleta [' + boleta + '] aun no sube comprobante de pago.'; 
+                                        }
+                                        else if(estado == "I")
+                                        {
+                                            modalContenido += 'El alumno ' + propietario  + ' con boleta [' + boleta + '] aun no solicita renovar su casillero con número: ' + this.getAttribute('data-id'); 
+                                        }
+                                        else if (estado == "F")
+                                        {
+                                            modalContenido += 'propietario: ' + propietario + '<br>';
+                                            modalContenido += 'boleta: ' + boleta + '<br>';
+                                            modalContenido += 'semestre: 2024/2025-2 (febrero-agosto)' + '<br><br><br>';
+                                            modalContenido += '<button class="btn btn-primary" onclick="mostrarComprobantePago(\'' + comprobantePago + '\')">Mostrar comprobante</button>';
+                                            modalContenido += '<button class="btn btn-success" onclick="aceptarPago(' + casillero.idCasillero + ', ' + idPersona + ')" style="margin: 0 5px;">Aceptar pago</button>';
+                                            modalContenido += '<button class="btn btn-danger" onclick="rechazarPago(' + casillero.idCasillero + ', ' + idPersona + ')">Rechazar pago</button>';
+                                        }
+
+                                    }
+                                }
+                                document.getElementById('modalContent').innerHTML = modalContenido;
+                                $('#lockerModal').modal('show');
+                            });
+                            contenedorCasilleros.appendChild(casilleroDiv);
+                        });
+                    },
+            error:  function(error)
+                    {
+                        alert('Error al obtener los datos de los casilleros');
+                    }
+        });
+    });
+    //Funciones
+    function asignarCasillero(idCasillero,idPersona)
+    {
+        var form = document.createElement('form');
+        form.method = 'POST';
+        form.action = 'asignarCasillero.php';
+
+        var inputCasillero = document.createElement('input');
+        inputCasillero.type = 'hidden';
+        inputCasillero.name = 'idCasilleroAsignar';
+        inputCasillero.value = idCasillero;
+
+        var inputAlumno = document.createElement('input');
+        inputAlumno.type = 'hidden';
+        inputAlumno.name = 'inputAlumnoAsignar';
+        inputAlumno.value = idPersona;
+
+        form.appendChild(inputCasillero);
+        form.appendChild(inputAlumno);
+        document.body.appendChild(form);
+        form.submit();
+    }
+
+    function aceptarPago(idCasillero,idPersona)
+    {
+        var form = document.createElement('form');
+        form.method = 'POST';
+        form.action = 'aceptarPago.php';
+
+        var inputCasillero = document.createElement('input');
+        inputCasillero.type = 'hidden';
+        inputCasillero.name = 'idCasilleroAceptar';
+        inputCasillero.value = idCasillero;
+
+        var inputAlumno = document.createElement('input');
+        inputAlumno.type = 'hidden';
+        inputAlumno.name = 'inputAlumnoAceptar';
+        inputAlumno.value = idPersona;
+
+        form.appendChild(inputCasillero);
+        form.appendChild(inputAlumno);
+        document.body.appendChild(form);
+        form.submit();
+    }
+
+    function rechazarPago(idCasillero,idPersona)
+    {
+        var form = document.createElement('form');
+        form.method = 'POST';
+        form.action = 'rechazarPago.php';
+
+        var inputCasillero = document.createElement('input');
+        inputCasillero.type = 'hidden';
+        inputCasillero.name = 'idCasilleroRechazar';
+        inputCasillero.value = idCasillero;
+
+        var inputAlumno = document.createElement('input');
+        inputAlumno.type = 'hidden';
+        inputAlumno.name = 'inputAlumnoRechazar';
+        inputAlumno.value = idPersona;
+
+        form.appendChild(inputCasillero);
+        form.appendChild(inputAlumno);
+        document.body.appendChild(form);
+        form.submit();
+    }
+
+    function mostrarComprobantePago(comprobantePagoPath)
+    {
+        window.open('../../'+comprobantePagoPath, '_blank');
+    }
+</script>
+
+</body>
+</html>
+

@@ -59,3 +59,14 @@ BEGIN
     RETURN !respuesta;
 END;
 
+--Función que verifica la existencia de un admin en la BD
+CREATE FUNCTION existirAdmin( usuarioVerificar VARCHAR(50) ) 
+RETURNS TINYINT
+DETERMINISTIC
+BEGIN
+    DECLARE resultado TINYINT DEFAULT 0;
+    IF EXISTS (SELECT 1 FROM Admin WHERE usuario = usuarioVerificar) THEN
+        SET resultado = 1;
+    END IF;
+    RETURN resultado;
+END;
