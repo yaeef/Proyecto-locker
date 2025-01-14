@@ -31,5 +31,7 @@
     #Acceso sin sesión
     $notificaciones[200] = '<div class="alert alert-danger alert-dismissible fade show" role="alert" style="width: min(60rem, 100%); margin: 3rem auto; text-align: center;">Acceso denegado, debes iniciar sesión para poder acceder.<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></div>';
     #CRUD ADMIN
-    $notificaciones[901] = '<div class="alert alert-success alert-dismissible fade show" role="alert" style="width: min(60rem, 100%); margin: 3rem auto; text-align: center;">Aceptaste el pago del casillero<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></div>';
+    $notificaciones[901] = '<div class="alert alert-success alert-dismissible fade show" role="alert" style="width: min(60rem, 100%); margin: 3rem auto; text-align: center;">Pago aceptado.<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></div>';
+    $notificaciones[902] = '<div class="alert alert-success alert-dismissible fade show" role="alert" style="width: min(60rem, 100%); margin: 3rem auto; text-align: center;">Asignación correcta de casillero.<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></div>';
+    $notificaciones[903] = '<div class="alert alert-warning alert-dismissible fade show" role="alert" style="width: min(60rem, 100%); margin: 3rem auto; text-align: center;">Pago rechazado.<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></div>';
 ?>

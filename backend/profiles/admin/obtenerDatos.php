@@ -49,12 +49,12 @@
         }
         else
         {
-            echo "Error al recuperar alumnos en estado D: " . mysqli_error($conexion);
+            #echo "Error al recuperar alumnos en estado D: " . mysqli_error($conexion);
             return null;
         }
     }
 
-    #Función que recupera los alumnos con casillero | ESTADOS: B, E, F, H, I
+    /*#Función que recupera los alumnos con casillero | ESTADOS: B, E, F, H, I
     function recuperaAlumnosConCasillero($conexion)
     {   
         #Preparar query para recuperar información de alumnos con casillero
@@ -76,15 +76,17 @@
             echo "Error al recuperar alumnos con Casillero: " . mysqli_error($conexion);
             return null;
         }
-    }
+    }*/
 
     
 
     $casilleros = recuperarCasilleros($conexion);
     $alumnosSinCasillero = recuperaAlumnosSinCasillero($conexion);
-    $alumnosConCasillero = recuperaAlumnosConCasillero($conexion);
-    
+    //$alumnosConCasillero = recuperaAlumnosConCasillero($conexion);
+
     $response = array('casilleros' => $casilleros, 'alumnosSinCasillero' => $alumnosSinCasillero, 'alumnosConCasillero' => $alumnosConCasillero);
+    
+    
     desconectarBD($conexion);
     header('Content-Type: application/json');
     echo json_encode($response);

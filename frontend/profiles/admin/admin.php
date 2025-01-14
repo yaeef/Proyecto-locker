@@ -161,13 +161,6 @@
         <div class="formulario__boton">
             <input class="boton" type="button" onclick="window.location.href='../../../backend/logoutA.php'" value="Logout" style="background-color:red;">
         </div>
-
-
-
-
-
-
-        
         </section>
         
     </main>
@@ -196,7 +189,7 @@
             success:function(data) //Se pasa como parametro los datos JSON obtenidos en obtenerDatos.php
                     {
                         var contenedorCasilleros = document.getElementById('casilleros');
-                        var alumnosConCasillero = data.alumnosConCasillero;
+                        //var alumnosConCasillero = data.alumnosConCasillero;
                         var alumnosSinCasillero = data.alumnosSinCasillero;
                         var casilleros = data.casilleros;
                         
@@ -240,11 +233,18 @@
 
                                 if(asignado == "0") //Si la instancia de casillero esta libre
                                 {
-                                    modalConenido = 'Selecciona un alumno para asignar este casillero: ';
-                                    alumnosSinCasillero.forEach(function(alumno)   //Alumno representa una instancia de alumnosSinCasillero
+                                    if(alumnosSinCasillero != null)
                                     {
-                                        modalContenido += '<button style="margin: 5px 0;" class="btn btn-light" onclick="asignarCasillero(' +casillero.idCasillero + ', ' + alumno.idPersona + ')">' + alumno.boleta + ' | ' + alumno.nombre + ' ' + alumno.paterno + ' ' + alumno.materno + ' | ' + alumno.estatura + ' cm</button><br>';
-                                    });
+                                        modalConenido = 'Selecciona un alumno para asignar este casillero: ';
+                                        alumnosSinCasillero.forEach(function(alumno)   //Alumno representa una instancia de alumnosSinCasillero
+                                        {
+                                            modalContenido += '<button style="margin: 5px 0;" class="btn btn-light" onclick="asignarCasillero(' +casillero.idCasillero + ', ' + alumno.boleta + ')">' + alumno.boleta + ' | ' + alumno.nombre + ' ' + alumno.paterno + ' ' + alumno.materno + ' | ' + alumno.estatura + ' cm</button><br>';
+                                        });
+                                    }
+                                    else
+                                    {
+                                        modalContenido += 'No hay alumnos por asignar ';
+                                    }
                                 }
                                 else //Si la instancia de casillero esta ocupada
                                 {
@@ -287,7 +287,7 @@
                                             modalContenido += 'semestre: 2024/2025-2 (febrero-agosto)' + '<br><br><br>';
                                             modalContenido += '<button class="btn btn-primary" onclick="mostrarComprobantePago(\'' + comprobantePago + '\')">Mostrar comprobante</button>';
                                             modalContenido += '<button class="btn btn-success" onclick="aceptarPago(' + casillero.idCasillero + ', ' + boleta + ')" style="margin: 0 5px;">Aceptar pago</button>';
-                                            modalContenido += '<button class="btn btn-danger" onclick="rechazarPago(' + casillero.idCasillero + ', ' + idPersona + ')">Rechazar pago</button>';
+                                            modalContenido += '<button class="btn btn-danger" onclick="rechazarPago(' + casillero.idCasillero + ', ' + boleta + ')">Rechazar pago</button>';
                                         }
 
                                     }
@@ -300,7 +300,7 @@
                     },
             error:  function(error)
                     {
-                        alert('Error al obtener los datos de los casilleros');
+                        alert('No hay Alumnos registrados :(');
                     }
         });
     });

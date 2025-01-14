@@ -116,6 +116,9 @@
                             </div>
                         </fieldset>
                     </form>
+                    <div class="formulario__boton">
+                        <input class="boton" type="button" onclick="window.location.href=\'../../../backend/logout.php\'" value="Logout" style="background-color:red;">
+                    </div>
                     <script>
                         var comprobante = document.getElementById("comprobante");
                         var nombreArchivo3 = document.getElementById("nombreArchivo3");
