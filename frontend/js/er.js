@@ -142,7 +142,7 @@ btnRegistrar.addEventListener("click", () =>
     if(!erUsuarioL.test(usuario))
     {
         document.getElementById("usuario").setAttribute("style","border:solid; border-color: tomato;");
-        alert("El nombre debe contener al menos 6 caracteres");
+        alert("El nombre de usuario debe contener al menos 6 caracteres");
         return;
     }
     else

@@ -20,7 +20,7 @@
         #casilleros 
         {
             display: grid;
-            gap: 10px;
+            gap: 5px;
             justify-items: center;
         }
         @media only screen and (min-width: 1200px)
@@ -95,7 +95,7 @@
         .ocupado:hover,
         .disponible:hover
         {
-            transform: scale(1,1);
+            transform: scale(1.3,1.3);
         }
     </style>
 </head>
@@ -113,7 +113,7 @@
         </div> 
     </nav>
     <main>
-        <section class="contenedor sombra">
+        <section class="contenedor sombra" style="margin-bottom: 38rem;">
         <?php 
             echo '<h2 class="titulo-form"> Bienvenido @' . $_SESSION['usuario'] . '</h2>';
         ?>
@@ -166,7 +166,7 @@
         
     </main>
     <footer>
-        <div class="footer contenedor">
+        <div class="footer contenedor" >
             <div class="footer__logos">
                 <a href="http://www.ipn.mx/" target="_blank"><img src="../../img/IPN-Logo.png" alt="Logotipo del IPN"></a>
                 <a href="http://www.escom.ipn.mx/" target="_blank"><img src="../../img/logoESCOMBlanco.png" alt="Logotipo de ESCOM"></a>
