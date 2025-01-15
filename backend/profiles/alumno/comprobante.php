@@ -6,8 +6,6 @@
     transicionEF($conexion,$boleta);
     desconectarBD($conexion);
     $_SESSION['estado'] = "F";
-    session_destroy();
-    $_SESSION = array();
-    header("location:../../../frontend/acceso.php?notif=101");
+    header("location:../../../frontend/profiles/alumno/alumno.php");
 
 ?>

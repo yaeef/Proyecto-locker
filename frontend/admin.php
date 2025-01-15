@@ -19,7 +19,7 @@
             <a class="nav__enlace" href="solicitud.php">Registro</a>
             <?php
                 session_start();
-                if(isset($_SESSION['session']))
+                if(isset($_SESSION['session']) && $_SESSION['session'] == 'alumno')
                 {
                     echo '<a class="nav__enlace" href="profiles/alumno/alumno.php">Acceso</a>';
                 }
@@ -68,7 +68,7 @@
                     </div>
                     <div class="formulario__boton">
                         <input class="boton" type="reset" value="Limpiar">
-                        <input class="boton" type="submit" value="login">
+                        <input class="boton" type="submit" value="login" <?php if(isset($_SESSION['session']) && $_SESSION['session'] == 'alumno'){ echo "disabled";}?>>
                     </div>
                 </fieldset>
             </form>

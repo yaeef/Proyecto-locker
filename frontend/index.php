@@ -20,16 +20,29 @@
             <a class="nav__enlace" href="solicitud.php">Registro</a>
             <?php
                 session_start();
-                if(isset($_SESSION['session']))
+                if(isset($_SESSION['session']) && $_SESSION['session'] == 'alumno')
                 {
                     echo '<a class="nav__enlace" href="profiles/alumno/alumno.php">Acceso</a>';
                 }
                 else
                 {
                     echo '<a class="nav__enlace" href="acceso.php">Acceso</a>';
+
                 }
             ?>
-            <a class="nav__enlace" href="admin.php">Admin</a>
+            <?php
+                session_start();
+                if(isset($_SESSION['session']) && $_SESSION['session'] == 'admin')
+                {
+                    echo '<a class="nav__enlace" href="profiles/admin/admin.php">Admin</a>';
+                }
+                else
+                {
+                    echo '<a class="nav__enlace" href="admin.php">Admin</a>';
+
+                }
+            ?>
+            
         </div>
     </nav>
 
@@ -76,7 +89,7 @@
             <section class="actividad">
                 <h3 class="actividadesSubtitulo">Artes Plásticas</h3>
                 <div class="icono">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" width="40" height="40" stroke-width="1.5"> <path d="M12 21a9 9 0 0 1 0 -18c4.97 0 9 3.582 9 8c0 1.06 -.474 2.078 -1.318 2.828c-.844 .75 -1.989 1.172 -3.182 1.172h-2.5a2 2 0 0 0 -1 3.75a1.3 1.3 0 0 1 -1 2.25"></path> <path d="M8.5 10.5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"></path> <path d="M12.5 7.5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"></path> <path d="M16.5 10.5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"></path> </svg> 
+                <img src="img/paleta-de-color.png" alt="Paleta de pintura" width="90" height="90" ></img>
                 </div>
                 <p>
                     Aprende a expresar tus emociones y sentimientos por medio de la pintura y el dibujo.
@@ -88,13 +101,7 @@
             <section class="actividad">
                 <h3>Creación literaria</h3>
                 <div class="icono">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="40" height="40" stroke-width="1.5">
-                        <path d="M3 19a9 9 0 0 1 9 0a9 9 0 0 1 9 0"></path>
-                        <path d="M3 6a9 9 0 0 1 9 0a9 9 0 0 1 9 0"></path>
-                        <path d="M3 6l0 13"></path>
-                        <path d="M12 6l0 13"></path>
-                        <path d="M21 6l0 13"></path>
-                    </svg>
+                    <img src="img/libro-abierto.png" alt="Paleta de pintura" width="90" height="90" ></img>
                 </div>
                 <p>
                     Podrás adquirir técnicas y métodos para formar hábitos de lectura y escritura. Además prepara a los alumnos para participar en concursos de poesía, cuento, lectura en atril y declamación.
@@ -106,16 +113,7 @@
             <section class="actividad">
                 <h3>Teatro</h3>
                 <div class="icono">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="40" height="40" stroke-width="1.5">
-                        <path d="M13.192 9h6.616a2 2 0 0 1 1.992 2.183l-.567 6.182a4 4 0 0 1 -3.983 3.635h-1.5a4 4 0 0 1 -3.983 -3.635l-.567 -6.182a2 2 0 0 1 1.992 -2.183z"></path>
-                        <path d="M15 13h.01"></path>
-                        <path d="M18 13h.01"></path>
-                        <path d="M15 16.5c1 .667 2 .667 3 0"></path>
-                        <path d="M8.632 15.982a4.037 4.037 0 0 1 -.382 .018h-1.5a4 4 0 0 1 -3.983 -3.635l-.567 -6.182a2 2 0 0 1 1.992 -2.183h6.616a2 2 0 0 1 2 2"></path>
-                        <path d="M6 8h.01"></path>
-                        <path d="M9 8h.01"></path>
-                        <path d="M6 12c.764 -.51 1.528 -.63 2.291 -.36"></path>
-                    </svg>
+                <img src="img/mascaras-de-teatro.png" alt="Paleta de pintura" width="90" height="90" ></img>
                 </div>
                 <p>
                     Aprende a expresarte en público a través de diversas técnicas teatrales, contribuyendo así a un mejor desarrollo integral.
@@ -134,7 +132,7 @@
             <section class="actividad">
                 <h3 class="actividadesSubtitulo">Fútbol: Soccer, Siete y Rápido (varonil/femenil)</h3>
                 <div class="icono">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="40" height="40" stroke-width="1.5"> <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path> <path d="M12 7l4.76 3.45l-1.76 5.55h-6l-1.76 -5.55z"></path> <path d="M12 7v-4m3 13l2.5 3m-.74 -8.55l3.74 -1.45m-11.44 7.05l-2.56 2.95m.74 -8.55l-3.74 -1.45"></path> </svg> 
+                <img src="img/pelota-de-futbol.png" alt="Paleta de pintura" width="90" height="90" ></img>
                 </div>
                 <p>
                     <b>Prof.</b> Diego Espinosa Gómez<br>
@@ -144,7 +142,7 @@
             <section class="actividad">
                 <h3>Voleibol (varonil/fememil)</h3>
                 <div class="icono">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="40" height="40" stroke-width="1.5"> <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path> <path d="M12 12a8 8 0 0 0 8 4"></path> <path d="M7.5 13.5a12 12 0 0 0 8.5 6.5"></path> <path d="M12 12a8 8 0 0 0 -7.464 4.928"></path> <path d="M12.951 7.353a12 12 0 0 0 -9.88 4.111"></path> <path d="M12 12a8 8 0 0 0 -.536 -8.928"></path> <path d="M15.549 15.147a12 12 0 0 0 1.38 -10.611"></path> </svg> 
+                    <img src="img/voleibol.png" alt="Paleta de pintura" width="90" height="90" ></img>
                 </div>
                 <p>
                     <b>Prof.</b> Hugo Hernández	Vera<br>
@@ -154,7 +152,7 @@
             <section class="actividad">
                 <h3>Clubes deportivos (varonil/femenil)</h3>
                 <div class="icono">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="40" height="40" stroke-width="1.5"> <path d="M8 16l-1.447 .724a1 1 0 0 0 -.553 .894v2.382h12v-2.382a1 1 0 0 0 -.553 -.894l-1.447 -.724h-8z"></path> <path d="M9 3l1 3l-3.491 2.148a1 1 0 0 0 .524 1.852h2.967l-2.073 6h7.961l.112 -5c0 -3 -1.09 -5.983 -4 -7c-1.94 -.678 -2.94 -1.011 -3 -1z"></path> </svg> 
+                    <img src="img/piezas-de-ajedrez.png" alt="Paleta de pintura" width="90" height="90" ></img>
                 </div>
                 <p>
                     <ul>

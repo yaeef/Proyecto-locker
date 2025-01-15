@@ -819,4 +819,58 @@
         }
         return 1;
     }
+    #Función que libera el casillero y transita al alumno a G
+    function liberarCasillero($conexion,$boletaAlumno, $casilleroAlumno)
+    {
+        $estadoAlumno = identificarEstado($conexion, $boletaAlumno);
+        
+        if($estadoAlumno == 'B' || $estadoAlumno == 'E' || $estadoAlumno == 'F' || $estadoAlumno == 'H' || $estadoAlumno == 'I') //Si se encuentra en estado B,E,F,H,I entonces se puede transicionar a G
+        {
+            //Definición de consulta para cambiar el estado del alumno
+            $query = "UPDATE Alumno SET estado = 'G', casillero = 0 WHERE boleta = $boletaAlumno;";
+            //Ejecución de consulta
+            $resultado = mysqli_query($conexion,$query);
+
+            if(!$resultado)
+            {
+                echo "Error al actualizar el estado del alumno: " . mysqli_error($conexion);
+                return 1;
+            }
+
+            //Definición de consulta que borra registro en CasilleroAlumno
+            $query = "DELETE FROM CasilleroAlumno WHERE idCasillero = $casilleroAlumno;";
+            //Ejecución de consulta
+            $resultado = mysqli_query($conexion,$query);
+
+            if(!$resultado)
+            {
+                echo "Error al borrar registro de CasilleroAlumno: " . mysqli_error($conexion);
+                return 1;
+            }
+
+            //Definición de consulta que libera casillero
+            $query = "UPDATE Casillero SET asignado = 0 WHERE idCasillero = $casilleroAlumno;";
+            //Ejecución de consulta
+            $resultado = mysqli_query($conexion,$query);
+
+            if(!$resultado)
+            {
+                echo "Error al liberar casillero: " . mysqli_error($conexion);
+                return 1;
+            }
+
+            //Definición de consulta que borra registro en AdminCasillero
+            $query = "DELETE FROM AdminCasillero WHERE idCasillero = $casilleroAlumno";
+            //Ejecución de consulta
+            $resultado = mysqli_query($conexion,$query);
+
+            if(!$resultado)
+            {
+                echo "Error al borrar registro de AdminCasillero: " . mysqli_error($conexion);
+                return 1;
+            }
+            return 0;
+        }
+        return 1;
+    }
 ?>

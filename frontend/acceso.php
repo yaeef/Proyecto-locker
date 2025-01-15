@@ -18,7 +18,18 @@
             <a class="nav__enlace" href="index.php">Inicio</a>
             <a class="nav__enlace" href="solicitud.php">Registro</a>
             <a class="nav__enlace boton--seleccion" href="acceso.php">Acceso</a>
-            <a class="nav__enlace" href="admin.php">Admin</a>
+            <?php
+                session_start();
+                if(isset($_SESSION['session']) && $_SESSION['session'] == 'admin')
+                {
+                    echo '<a class="nav__enlace" href="profiles/admin/admin.php">Admin</a>';
+                }
+                else
+                {
+                    echo '<a class="nav__enlace" href="admin.php">Admin</a>';
+
+                }
+            ?>
         </div> 
     </nav>
     <main>
@@ -59,7 +70,7 @@
                     </div>
                     <div class="formulario__boton">
                         <input class="boton" type="reset" value="Limpiar">
-                        <input class="boton" type="submit" value="login">
+                        <input class="boton" type="submit" value="Login" <?php if(isset($_SESSION['session']) && $_SESSION['session'] == 'admin'){ echo "disabled";}?>>
                     </div>
                 </fieldset>
             </form>

@@ -20,7 +20,7 @@
         #casilleros 
         {
             display: grid;
-            gap: 5px;
+            gap: 10px;
             justify-items: center;
         }
         @media only screen and (min-width: 1200px)
@@ -106,9 +106,9 @@
     </header>
     <nav class="nav">
         <div class="nav__barra contenedor">
-            <a class="nav__enlace" href="#">Inicio</a>
-            <a class="nav__enlace" href="#">Registro</a>
-            <a class="nav__enlace" href="#">Acceso</a>
+            <a class="nav__enlace" href="../../index.php">Inicio</a>
+            <a class="nav__enlace" href="../../solicitud.php">Registro</a>
+            <a class="nav__enlace" href="../../acceso.php">Acceso</a>
             <a class="nav__enlace boton--seleccion" href="admin.php">Admin</a>
         </div> 
     </nav>
@@ -160,6 +160,7 @@
         </div>
         <div class="formulario__boton">
             <input class="boton" type="button" onclick="window.location.href='../../../backend/logoutA.php'" value="Logout" style="background-color:red;">
+            <input class="boton" type="button" onclick="window.location.href='../../solicitud.php'" value="Registrar">
         </div>
         </section>
         
@@ -193,7 +194,8 @@
                         var alumnosSinCasillero = data.alumnosSinCasillero;
                         var casilleros = data.casilleros;
                         
-                        casilleros.forEach(function(casillero){  //Casillero representa una instancia de la variable casilleros
+                        casilleros.forEach(function(casillero)  //Casillero representa una instancia de la variable casilleros
+                        {
                             var casilleroDiv = document.createElement('div');
                             if(casillero.asignado == 1 && casillero.pagado == 0)
                             {
@@ -223,6 +225,8 @@
                                 casilleroDiv.setAttribute('data-estado',casillero.estado);
                                 casilleroDiv.setAttribute('data-idPropietario',casillero.idPersona)
                                 casilleroDiv.setAttribute('data-comprobantePago',casillero.comprobantePago);
+                                casilleroDiv.setAttribute('data-credencial',casillero.credencial)
+                                casilleroDiv.setAttribute('data-horario',casillero.horario);
 
                             }
 
@@ -235,10 +239,12 @@
                                 {
                                     if(alumnosSinCasillero != null)
                                     {
-                                        modalConenido = 'Selecciona un alumno para asignar este casillero: ';
+                                        modalContenido = 'Selecciona un alumno para asignar este casillero: ';
                                         alumnosSinCasillero.forEach(function(alumno)   //Alumno representa una instancia de alumnosSinCasillero
                                         {
-                                            modalContenido += '<button style="margin: 5px 0;" class="btn btn-light" onclick="asignarCasillero(' +casillero.idCasillero + ', ' + alumno.boleta + ')">' + alumno.boleta + ' | ' + alumno.nombre + ' ' + alumno.paterno + ' ' + alumno.materno + ' | ' + alumno.estatura + ' cm</button><br>';
+                                            modalContenido += '<button style="margin: 5px 0;" class="btn btn-outline-dark" onclick="asignarCasillero(' +casillero.idCasillero + ', ' + alumno.boleta + ')">' + alumno.boleta + ' | ' + alumno.nombre + ' ' + alumno.paterno + ' ' + alumno.materno + ' | ' + alumno.estatura + ' cm</button>';
+                                            modalContenido += '<button style="margin: 5px 5px;" class="btn btn-outline-primary" onclick="mostrarCredencial(\'' + alumno.credencial + '\')"> Credencial </button>';
+                                            modalContenido += '<button style="margin: 5px 0;" class="btn btn-outline-warning" onclick="mostrarHorario(\'' + alumno.horario + '\')"> Horario </button><br>';
                                         });
                                     }
                                     else
@@ -252,6 +258,8 @@
                                     var pagado = this.getAttribute('data-pagado');
                                     var boleta = this.getAttribute('data-propietarioBoleta');
                                     var comprobantePago = this.getAttribute('data-comprobantePago');
+                                    var credencial = this.getAttribute('data-credencial');
+                                    var horario = this.getAttribute('data-horario');
 
                                     if(pagado == "1") //Si el casillero esta pagado
                                     {
@@ -259,7 +267,10 @@
                                         modalContenido += 'Propietario: ' + propietario + '<br>';
                                         modalContenido += 'boleta: ' + boleta + '<br>';
                                         modalContenido += 'semestre: 2024/2025-2 (febrero-agosto)';
-                                        modalContenido += '<br><br><button class="btn btn-primary" onclick="mostrarComprobantePago(\'' + comprobantePago + '\')">Mostrar comprobante</button>';
+                                        modalContenido += '<br><br><button class="btn btn-outline-success" onclick="mostrarComprobantePago(\'' + comprobantePago + '\')">Comprobante de pago</button>';
+                                        modalContenido += '<button style="margin: 5px 5px;" class="btn btn-outline-primary" onclick="mostrarCredencial(\'' + credencial + '\')"> Credencial </button>';
+                                        modalContenido += '<button style="margin: 5px 0;" class="btn btn-outline-warning" onclick="mostrarHorario(\'' + horario + '\')"> Horario </button>';
+                                        modalContenido += '<button style="margin: 5px 5px;" class="btn btn-danger" onclick="liberarCasillero(' + casillero.idCasillero + ', ' + boleta + ')">Liberar casillero</button>';
                                     }
                                     else //Si el casillero no esta pagado          AQUI CHECAR EN QUE ESTADO ESTA Y MOSTRAR DISTINTO MODAL, AGREGUÉ ESTADO A CASILLERO
                                     {
@@ -270,15 +281,18 @@
 
                                         if(estado == "B")
                                         {
-                                            modalContenido += 'El alumno ' + propietario  + ' con boleta [' + boleta + '] aun no acepta términos y condiciones.'; 
+                                            modalContenido += 'El alumno ' + propietario  + ' con boleta [' + boleta + '] aun no acepta términos y condiciones.';
+                                            modalContenido += '<br><br><button style="margin: 5px 5px;" class="btn btn-danger" onclick="liberarCasillero(' + casillero.idCasillero + ', ' + boleta + ')">Liberar casillero</button>';
                                         }
                                         else if(estado == "E")
                                         {
                                             modalContenido += 'El alumno ' + propietario  + ' con boleta [' + boleta + '] aun no sube comprobante de pago.'; 
+                                            modalContenido += '<br><br><button style="margin: 5px 5px;" class="btn btn-danger" onclick="liberarCasillero(' + casillero.idCasillero + ', ' + boleta + ')">Liberar casillero</button>';
                                         }
                                         else if(estado == "I")
                                         {
                                             modalContenido += 'El alumno ' + propietario  + ' con boleta [' + boleta + '] aun no solicita renovar su casillero con número: ' + this.getAttribute('data-id'); 
+                                            modalContenido += '<br><br><button style="margin: 5px 5px;" class="btn btn-danger" onclick="liberarCasillero(' + casillero.idCasillero + ', ' + boleta + ')">Liberar casillero</button>';
                                         }
                                         else if (estado == "F")
                                         {
@@ -371,9 +385,39 @@
         form.submit();
     }
 
+    function liberarCasillero(idCasillero,idPersona) 
+    {
+        var form = document.createElement('form');
+        form.method = 'POST';
+        form.action = '../../../backend/profiles/admin/liberarCasillero.php';
+
+        var inputCasillero = document.createElement('input');
+        inputCasillero.type = 'hidden';
+        inputCasillero.name = 'idCasilleroLiberar';
+        inputCasillero.value = idCasillero;
+
+        var inputAlumno = document.createElement('input');
+        inputAlumno.type = 'hidden';
+        inputAlumno.name = 'inputAlumnoLiberar';
+        inputAlumno.value = idPersona;
+
+        form.appendChild(inputCasillero);
+        form.appendChild(inputAlumno);
+        document.body.appendChild(form);
+        form.submit();
+    }
+
     function mostrarComprobantePago(comprobantePagoPath)
     {
         window.open('../../../backend/'+comprobantePagoPath, '_blank');
+    }
+    function mostrarCredencial(credencialPath)
+    {
+        window.open('../../../backend/'+credencialPath, '_blank');
+    }
+    function mostrarHorario(horarioPath)
+    {
+        window.open('../../../backend/'+horarioPath, '_blank');
     }
 </script>
 </body>

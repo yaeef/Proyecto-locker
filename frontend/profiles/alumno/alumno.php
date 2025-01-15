@@ -7,7 +7,6 @@
     }
 ?>
 
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -186,7 +185,7 @@
                                 <img src="../../img/schedule.png" alt="Semestre"> 
                             </div> 
                             <div class="info"> 
-                                <span>Semestre: </span>  2025-1
+                                <span>Semestre: </span>  2024-2025/2 (febrero-agosto)
                             </div>
                         </div>
                         <div class="card"> 

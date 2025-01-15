@@ -22,7 +22,7 @@
             <a class="nav__enlace boton--seleccion" href="solicitud.php">Registro</a>
             <?php
                 session_start();
-                if(isset($_SESSION['session']))
+                if(isset($_SESSION['session']) && $_SESSION['session'] == 'alumno')
                 {
                     echo '<a class="nav__enlace" href="profiles/alumno/alumno.php">Acceso</a>';
                 }
@@ -31,7 +31,18 @@
                     echo '<a class="nav__enlace" href="acceso.php">Acceso</a>';
                 }
             ?>
-            <a class="nav__enlace" href="admin.php">Admin</a>
+            <?php
+                session_start();
+                if(isset($_SESSION['session']) && $_SESSION['session'] == 'admin')
+                {
+                    echo '<a class="nav__enlace" href="profiles/admin/admin.php">Admin</a>';
+                }
+                else
+                {
+                    echo '<a class="nav__enlace" href="admin.php">Admin</a>';
+
+                }
+            ?>
         </div>
     </nav>
     <main>

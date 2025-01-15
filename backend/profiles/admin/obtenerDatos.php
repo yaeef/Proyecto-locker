@@ -7,7 +7,7 @@
     function recuperarCasilleros($conexion)
     {   
         #Preparar query para recuperar información de casilleros
-        $query = "  SELECT C.idCasillero, C.asignado, A.idPersona, A. boleta, A.nombre, A.paterno, A.materno, A.estado, CA.pagado, CA.comprobantePago
+        $query = "  SELECT C.idCasillero, C.asignado, A.idPersona, A. boleta, A.nombre, A.paterno, A.materno, A.estado, A. credencial, A. horario, CA.pagado, CA.comprobantePago
                     FROM Casillero C
                     LEFT JOIN CasilleroAlumno CA ON C.idCasillero = CA.idCasillero
                     LEFT JOIN Alumno A ON CA.idPersona = A.idPersona;";
@@ -34,7 +34,7 @@
     function recuperaAlumnosSinCasillero($conexion)
     {   
         #Preparar query para recuperar información de alumnos en estado D
-        $query = "  SELECT idPersona, boleta, nombre, paterno, materno, estatura FROM Alumno WHERE estado ='D';";
+        $query = "  SELECT idPersona, boleta, nombre, paterno, materno, estatura, credencial, horario FROM Alumno WHERE estado ='D';";
 
         $resultado = mysqli_query($conexion,$query);
         $alumnosD = array();
@@ -84,7 +84,7 @@
     $alumnosSinCasillero = recuperaAlumnosSinCasillero($conexion);
     //$alumnosConCasillero = recuperaAlumnosConCasillero($conexion);
 
-    $response = array('casilleros' => $casilleros, 'alumnosSinCasillero' => $alumnosSinCasillero, 'alumnosConCasillero' => $alumnosConCasillero);
+    $response = array('casilleros' => $casilleros, 'alumnosSinCasillero' => $alumnosSinCasillero/*, 'alumnosConCasillero' => $alumnosConCasillero*/);
     
     
     desconectarBD($conexion);
